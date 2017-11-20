@@ -1,0 +1,27 @@
+/* Upload */
+
+.upload-msg {
+	display: block;
+	padding: 10px;
+	margin-top: 10px;
+	
+	&.hide {
+		display:none;
+	}
+	
+	&.error {
+		background-color: rgb(249, 103, 103);
+	}
+	&.success {
+		background-color: rgb(103, 249, 237);
+	}
+}
+
+.singleupload {
+    border: 5px dashed #525252;
+    text-align: center;
+    width: 200px;
+    height: 200px;
+	margin: 0 auto;
+	background-color: #DEDEDE;
+}

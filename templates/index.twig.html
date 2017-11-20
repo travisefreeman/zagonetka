@@ -1,0 +1,254 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="keywords" content="{{ meta_keywords }}" />
+<meta name="description" content="{{ og_description }}" />
+<meta name="author" content="Bluewearld" />
+{# Facebook Open Graph Tags #}        
+<meta property="fb:app_id" content="{{ og_fb_app_id }}" />
+<meta property="og:title" content="{{ og_title }}" />
+<meta property="og:type" content="article" />
+<meta property="og:image" content="{{ uri }}media/{{ og_image }}" />
+<meta property="og:url" content="{{ uri }}" />
+<meta property="og:description" content="{{ og_description }}" />
+{# Twitter Open Graph Tags #}          
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="{{ og_title }}" />
+<meta name="twitter:site" content="{{ og_tw_author }}"/>
+<meta name="twitter:creator" content="{{ og_tw_author }}"/>
+<meta name="twitter:description" content="{{ og_description }}" />
+<meta name="twitter:image" content="{{ uri }}media/{{ og_image }}" />
+<title>{{ title }}</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.0.5/css/foundation.min.css" type="text/css" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Arimo:400,400italic,700,700italic" type="text/css" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" type="text/css" />
+<link rel="stylesheet" href="{{ uri }}assets/style.css" type="text/css" />
+{% if ga_tracking_id %}
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', '{{ ga_tracking_id }}']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+{% endif %}
+</head>
+<body>
+
+<div class="cover">
+    <img src="{{ uri }}media/{{ cover_image }}" class="cover" alt="Cover" />
+</div>
+
+<div class="easy-modal" id="modal-dialog">
+    <div class="easy-modal-inner">
+    	<div class="modal-loading" style="text-align:center;">
+        	<div class="modal-content"></div>
+        	<div><img src="{{ uri }}assets/ajax-loader.gif" alt="Loader" style="text-align:center;" /></div>
+        </div>
+        <div class="modal-info hide">
+            <h1 class="modal-title text-center"></h1>
+            <div class="modal-content text-center"></div>
+            <a class="easy-modal-close" title="Close"><i class="fa fa-close"></i></a>
+        </div>
+    </div>
+</div>
+
+<div class="easy-modal" id="modal-upload">
+    <div class="easy-modal-inner">
+        <div class="modal-info">
+        	<div class="row">
+                <div class="large-12 columns">
+                    <h1>Upload Your Image</h1>
+                    <div><p>Create your own puzzle by uploading any of your own images.</p></div>
+                    <div class="upload-msg hide">asfa </div>
+            	</div>
+            </div>
+            <p>&nbsp;</p>
+            <div class="row">
+                <div class="large-12 columns">
+                	<div class="upload-step-1">
+                    	<p><strong>Step 1</strong> - Enter your email address.</p>
+                        <p>&nbsp;</p>
+                        <div class="input-group">
+                            <input type="text" name="puzla_person_email" class="input-group-field" placeholder="Enter your email" />
+                            <div class="input-group-button">
+                                <input type="submit" class="button puzla-upload-step-email" value="Submit Email" maxlength="100" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="upload-step-2 hide">
+                    	<p><strong>Step 2</strong> - Enter a short name for the theme of your puzzle.</p>
+                        <p>&nbsp;</p>
+                        <div class="input-group">
+                            <input type="text" name="puzla_person_puzzle_name" class="input-group-field" placeholder="Name your puzzle" />
+                            <div class="input-group-button">
+                                <input type="submit" class="button secondary puzla-upload-step-puzzle-name" value="Submit Name" maxlength="200" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="upload-step-3 hide">
+                    	<p><strong>Step 3</strong> - Click on the box to upload your image.</p>
+                        <p>&nbsp;</p>
+                    	<div id="uploadbox"  class="singleupload"></div>
+                        <form enctype="multipart/form-data">
+                        <input type="file" id="puzla_img_upload" style="display:none;" name="img" value="" />
+                        </form>
+                    </div>
+                    <div class="upload-step-4 hide">
+                    	<p>Congrats, you've created your custom puzzle. Click on the link below to play it.</p>
+                        <p>&nbsp;</p>
+                        <p class="puzla-custom-link"></p>
+                    </div>
+                </div>
+            </div>
+            <a class="easy-modal-close" title="Close"><i class="fa fa-close"></i></a>
+        </div>
+    </div>
+</div>
+
+<div class="easy-modal" id="modal-notification">
+	<p><span class="puzla_hello_name"></span>, did you want me to save your name for a bit ?</p>
+    <div><a class="puzla_save_name button">Yes</a> <a class="puzla_dont_save_name button alert">No</a></div>
+</div>
+
+<nav class="top-bar">
+    <div class="row">
+        <div class="large-12 columns">
+            <div class="top-bar-left">
+                <ul class="menu">
+                    <li class="brand"><a href="{{ uri }}">PUZLA</a></li>
+                </ul>
+            </div>
+            {% if puzzle %}
+            <div class="top-bar-right">
+                <ul class="menu mainmenu">
+                	<li><span class="puzla_puzzle_name">Theme: </span>{{ puzzle.name }}</li>
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+
+{% if puzzle %}
+<div class="full-width options-menu hide">
+    <div class="row">
+        <div class="large-12 columns">
+            <div class="top-bar-right">
+                <ul>
+                	<li><a class="puzla-upload-btn"><i class="fa fa-cloud-upload"></i>&nbsp;Upload Your Image</a></li>
+                    <li><a class="puzla-leaderboard-btn"><i class="fa fa-line-chart"></i>&nbsp;Leaderboard</a></li>
+                    <li><a class="puzla-more-puzzles-btn"><i class="fa fa-puzzle-piece"></i>&nbsp;More Puzzles</a></li>
+                    <li><a class="puzla-menu-close-btn"><i class="fa fa-close"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="full-width sub-nav">
+	<div class="row ">
+        <div class="large-12 large columns">
+        	<ul class="bxslider">
+            	<li>&nbsp;</li>
+                <li>
+                    <div class="row">
+                        <div class="large-6 columns"><label for="middle-label" class="middle">Hello, what should I call you ?</label></div>
+                        <div class="large-6 columns text-right">
+                            <div class="puzla-enter-name">
+                                <input type="text" name="puzla_person_name" value="" class="float-left" id="middle-label" placeholder="Enter your name" /><a class="button float-left puzla-start-btn">Start Puzzle</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="row">
+                    	<div class="large-7 columns">
+                            <div class="puzla_phase_1 puzla_phase"><p>Hello <span class="puzla_hello_name"></span>, once you move the first puzzle piece, the timer will start.</p></div>
+                            <div class="puzla_phase_2 puzla_phase hide">You're on your way <span class="puzla_hello_name"></span>. Your current time is: <span class="puzla_timer">0</span></div>
+                            <div class="puzla_phase_3 puzla_phase hide"><span class="puzla_timer_done">0</span> seconds was your time <span class="puzla_hello_name"></span> :)</div>
+                            <div class="puzla_phase_4 puzla_phase hide">It looks like your game has timed out :(</div>
+                            <div class="puzla_phase_5 puzla_phase hide">If at first you don't succeed, dust yourself off and try again <span class="puzla_hello_name"></span> :)</div>
+                    	</div>
+                        <div class="large-5 columns puzla-other-btns">
+                            <a class="button secondary puzla-options-btn"><i class="fa fa-gear"></i> Options</a>
+                            <a class="button puzla-rejig-btn"><i class="fa fa-refresh"></i> Restart</a>
+                            <a class="alert button puzla-quit-btn"><i class="fa fa-hand-stop-o"></i> Quit</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<section class="full-width puzla-puzzle-board">
+    <canvas id="playground" class="puzla-puzzle-board-canvas" width="960" height="600"></canvas>
+</section>
+
+{% else %}
+<div class="row puzla_alert">
+    <div class="large-9 large-centered columns">
+        <div class="callout alert">
+            <h5>Ooops</h5>
+            <p>{{ msg }}</p>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<footer>
+    <div class="row">
+        <div class="large-6 columns">
+            Powered by <a href="http://www.bluewearld.com" target="_blank">bluewearld</a>
+        </div>
+        <div class="large-6 columns">
+            <ul class="inline-list float-right">
+                <li>	<a href="https://www.facebook.com/bluewearld" target="_blank" rel="nofollow"><i class="fa fa-facebook-official"></i></a></li>
+                <li>	<a href="https://www.twitter.com/bluewearld" target="_blank" rel="nofollow"><i class="fa fa-twitter"></i></a></li>
+                <li>	<a href="https://www.instagram.com/bluewearld/" target="_blank" rel="nofollow"><i class="fa fa-instagram"></i></a></li>
+                <li>	<a href="https://www.pinterest.com/bluewearld/" target="_blank" rel="nofollow"><i class="fa fa-pinterest-square"></i></a></li>
+                <li>	<a href="https://www.youtube.com/user/bluewearld/videos" target="_blank" rel="nofollow"><i class="fa fa-youtube-square"></i></a></li>
+                <li>	<a href="https://vine.co/bluewearld" target="_blank" rel="nofollow"><i class="fa fa-vine"></i></a></li>
+                <li>	<a href="https://soundcloud.com/bluewearld" target="_blank" rel="nofollow"><i class="fa fa-soundcloud"></i></a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="//code.createjs.com/easeljs-0.8.1.min.js"></script>
+<script src="//code.createjs.com/soundjs-0.6.2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.0.5/js/foundation.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.1.2/jquery.bxslider.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="{{ uri }}assets/scripts/jquery.singleuploadimage.js"></script>
+<script src="{{ uri }}assets/scripts/jquery.easyModal.js"></script>
+<script src="{{ uri }}assets/scripts/videobuffer.js"></script>
+{% if puzzle %}
+<script type="text/javascript">
+var puzlaSettings = {
+	'imageMinWidth'		: 200,
+	'imageMaxWidth'		: parseFloat( '{{ imageMaxWidth }}' ),
+	'imageMinHeight'	: 200,
+	'imageMaxHeight'	: parseFloat( '{{ imageMaxHeight }}' ),
+	'puzzlePieceLength'	: 100,
+	'fitRangeDistance'	: 40,
+	'uri'				: '{{ uri }}',
+	'puzzleID'			: '{{ puzzle.id }}',
+	'puzzleName'			: '{{ puzzle.name }}',
+	'timeout'			: 600,
+	'mediaType'			: '{{ puzzle.type }}',
+	'mediaFile'			: '{{ puzzle.file }}',
+	'mediaDirectory'	: '{{ uri }}media/',
+	'mediaDuration'		: parseFloat( '{{ puzzle.duration }}' ),
+};
+</script>
+{% endif %}
+<script src="{{ uri }}assets/scripts/app.min.js"></script>
+</body>
+</html>

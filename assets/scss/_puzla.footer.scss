@@ -1,0 +1,29 @@
+/* Footer */
+
+footer {
+	background-color: #2f2f2f;
+	padding: 20px;
+	color:#ffffff;
+	
+	a {
+		color: #ffffff;
+		font-weight:bold;
+	}
+}
+
+.inline-list {
+	list-style: none;
+	margin-top: 0;
+	margin-bottom: 0.94444rem;
+	margin-left: -1.22222rem;
+	margin-right: 0;
+	overflow: hidden;
+	padding: 0;
+	
+	& > li {
+		display: block;
+		float: left;
+		list-style: none;
+		margin-left: 1.22222rem;
+	}
+}

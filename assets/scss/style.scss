@@ -1,0 +1,33 @@
+/* Style */
+
+body {
+	font-family: 'Arimo', sans-serif;
+	overflow-x:hidden;
+	height: auto;
+}
+
+.full-width {
+	max-width: 100%;
+}
+
+.error {
+	background-color: #F3D1D1;
+}
+
+p {
+	margin-bottom:0px;
+}
+
+@import "puzla.cover";
+@import "puzla.nav";
+@import "puzla.subnav";
+@import "puzla.canvas";
+@import "puzla.upload";
+@import "puzla.easy-modal";
+@import "puzla.footer";
+
+/*.puzla_alert { margin-top: 50px; }
+
+.puzla_start_panel { margin-top: 50px; }
+
+.puzla_scores a { color:#ffffff; }*/

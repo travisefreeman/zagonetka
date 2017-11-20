@@ -1,0 +1,31 @@
+/* Easy Modal */
+
+.easy-modal,
+.easy-modal-animated {
+	width: 100%;
+	padding: 2em;
+	box-shadow: 1px 1px 3px rgba(0,0,0,0.35);
+	background-color: white;
+	display:none;
+}
+
+.easy-modal-close {
+	position: absolute;
+	color: #8a8a8a;
+	right: 1rem;
+	top: .5rem;
+	font-size: 2em;
+	line-height: 1;
+	cursor: pointer;
+}
+
+#modal-notification {
+    background: #FFE38C;
+    text-align: center;
+    min-width: 600px;
+    padding: 5px 0;
+    color: #000000;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    font-weight: 600;
+	padding:20px 0;
+}

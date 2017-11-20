@@ -1,0 +1,101 @@
+/* Subnav */
+
+.sub-nav {
+	background-color: #444;
+	padding: 15px 0;
+	color: #fff;
+	
+	label.middle {
+		margin: 0;
+		padding: .2625rem 0 0 0;
+		color:#fff;
+		font-size:16px;
+	}
+	
+	[type=text] {
+		width:60%;
+	}
+	
+	.button {
+		padding: 0.81em 0em;
+		margin:0;
+		
+	}
+	
+	.puzla-enter-name {
+		width: 100%;
+		margin-top: 0px;
+		@media ( max-width: 1024px ) {
+			margin-top: 10px;
+		}
+	}
+	
+	.puzla-start-btn {
+		width: 40%;
+	}
+	
+	#middle-label {
+		margin:0;
+	}
+	
+	.puzla-other-btns {
+		text-align: right;
+		margin-top: 0px;
+		
+		@media ( max-width: 1024px ) {
+			margin-top: 10px;
+			text-align: left;
+		}
+	}
+}
+
+.puzla_hello_name {
+	font-weight: bold;
+}
+
+.puzla-rejig-btn, .puzla-quit-btn, .puzla-options-btn {
+	min-width: 100px;
+}
+
+.options-menu {
+	background-color: #E9E9E8;
+	padding: 15px 0;
+	color: #000;
+	
+	ul {
+		list-style:none;
+		margin-bottom: 0;
+		
+		li {
+			display:inline;
+			margin-left:20px;
+			
+			a {
+				color:#000;
+				
+				&:hover {
+					color:#5A5757;
+				}
+			}
+		}
+	}
+}
+
+.puzla_phase {
+	font-size: 16px;
+	padding: .2625rem 0 0 0;
+}
+
+ul.bxslider {
+	height: 39px;
+	overflow: hidden;
+	
+	@media ( max-width: 1024px ) {
+		height: 100%;
+	}
+	
+	li {
+		min-height: 39px;
+		list-style:none;
+	}
+}

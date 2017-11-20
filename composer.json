@@ -1,0 +1,11 @@
+{
+    "name": "bluewearld/zagonetka",
+    "description": "Puzzle application for the web",
+    "type": "library",
+	"require": {
+		"silex/silex": "~2.0",
+		"twig/twig": "1.*",
+		"gabordemooij/redbean": "4.*",
+		"phpmailer/phpmailer": "5.*"
+	}
+}
